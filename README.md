@@ -1,6 +1,6 @@
 # Pasabuyan: Peer-to-Peer Delivery Platform
 
-Pasabuyan is a courier application that connects people who need items delivered with travelers who are already heading to that destination. Unlike traditional courier services that rely on professional drivers, Pasabuyan leverages the existing travel plans of regular people.
+Pasabuyan is a courier app that connects individuals needing item deliveries with travelers already headed to the same destination. Unlike traditional courier services that rely on professional drivers, Pasabuyan taps into everyday travel plans, making deliveries more convenient and cost-effective.
 
 ## Core Concept
 - **Travelers** register their upcoming trips (origin, destination, dates, capacity).
