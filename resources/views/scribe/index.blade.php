@@ -87,7 +87,7 @@
     <ul class="toc-footer" id="toc-footer">
                     <li style="padding-bottom: 5px;"><a href="{{ route("scribe.postman") }}">View Postman collection</a></li>
                             <li style="padding-bottom: 5px;"><a href="{{ route("scribe.openapi") }}">View OpenAPI spec</a></li>
-     
+                <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
     </ul>
 
     <ul class="toc-footer" id="last-updated">
@@ -134,8 +134,9 @@ You can switch the language used with the tabs at the top right (or from the nav
     \"name\": \"b\",
     \"email\": \"zbailey@example.net\",
     \"password\": \"architecto\",
-    \"phone_number\": \"ngzmiyvdljnikhwa\",
-    \"about\": \"y\"
+    \"password_confirmation\": \"ngzmiyvdljnikhwaykcmyuwpwl\",
+    \"phone_number\": \"vqwrsitcpscqldzs\",
+    \"about\": \"n\"
 }"
 </code></pre></div>
 
@@ -154,8 +155,9 @@ let body = {
     "name": "b",
     "email": "zbailey@example.net",
     "password": "architecto",
-    "phone_number": "ngzmiyvdljnikhwa",
-    "about": "y"
+    "password_confirmation": "ngzmiyvdljnikhwaykcmyuwpwl",
+    "phone_number": "vqwrsitcpscqldzs",
+    "about": "n"
 };
 
 fetch(url, {
@@ -272,15 +274,26 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>Example: <code>architecto</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>password_confirmation</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="password_confirmation"                data-endpoint="POSTapi-register"
+               value="ngzmiyvdljnikhwaykcmyuwpwl"
+               data-component="body">
+    <br>
+<p>Must be at least 8 characters. Example: <code>ngzmiyvdljnikhwaykcmyuwpwl</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>phone_number</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="phone_number"                data-endpoint="POSTapi-register"
-               value="ngzmiyvdljnikhwa"
+               value="vqwrsitcpscqldzs"
                data-component="body">
     <br>
-<p>Must not be greater than 20 characters. Example: <code>ngzmiyvdljnikhwa</code></p>
+<p>Must not be greater than 20 characters. Example: <code>vqwrsitcpscqldzs</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>about</code></b>&nbsp;&nbsp;
@@ -288,10 +301,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="about"                data-endpoint="POSTapi-register"
-               value="y"
+               value="n"
                data-component="body">
     <br>
-<p>Must not be greater than 1000 characters. Example: <code>y</code></p>
+<p>Must not be greater than 1000 characters. Example: <code>n</code></p>
         </div>
         </form>
 

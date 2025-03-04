@@ -52,11 +52,21 @@ endpoints:
         exampleWasSpecified: false
         nullable: false
         custom: []
+      password_confirmation:
+        name: password_confirmation
+        description: 'Must be at least 8 characters.'
+        required: true
+        example: ngzmiyvdljnikhwaykcmyuwpwl
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
       phone_number:
         name: phone_number
         description: 'Must not be greater than 20 characters.'
         required: false
-        example: ngzmiyvdljnikhwa
+        example: vqwrsitcpscqldzs
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -66,7 +76,7 @@ endpoints:
         name: about
         description: 'Must not be greater than 1000 characters.'
         required: false
-        example: 'y'
+        example: 'n'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -76,8 +86,9 @@ endpoints:
       name: b
       email: zbailey@example.net
       password: architecto
-      phone_number: ngzmiyvdljnikhwa
-      about: 'y'
+      password_confirmation: ngzmiyvdljnikhwaykcmyuwpwl
+      phone_number: vqwrsitcpscqldzs
+      about: 'n'
     fileParameters: []
     responses: []
     responseFields: []
