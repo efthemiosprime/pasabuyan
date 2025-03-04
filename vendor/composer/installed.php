@@ -3,7 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '7e095667af438cf987c78d081d4e752c3eb1e432',
+        'reference' => '1c55b2ffa634309179501e08966cd3c670e689c7',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -84,6 +84,15 @@
             'install_path' => __DIR__ . '/../egulias/email-validator',
             'aliases' => array(),
             'dev_requirement' => false,
+        ),
+        'erusev/parsedown' => array(
+            'pretty_version' => '1.7.4',
+            'version' => '1.7.4.0',
+            'reference' => 'cb17b6477dfff935958ba01325f2e8a2bfa6dab3',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../erusev/parsedown',
+            'aliases' => array(),
+            'dev_requirement' => true,
         ),
         'fakerphp/faker' => array(
             'pretty_version' => 'v1.24.1',
@@ -370,6 +379,15 @@
                 0 => 'v12.0.1',
             ),
         ),
+        'knuckleswtf/scribe' => array(
+            'pretty_version' => '5.1.0',
+            'version' => '5.1.0.0',
+            'reference' => '1e846244476a0312b8a7731a779a4fea85a5bfa0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../knuckleswtf/scribe',
+            'aliases' => array(),
+            'dev_requirement' => true,
+        ),
         'kodova/hamcrest-php' => array(
             'dev_requirement' => true,
             'replaced' => array(
@@ -388,7 +406,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '7e095667af438cf987c78d081d4e752c3eb1e432',
+            'reference' => '1c55b2ffa634309179501e08966cd3c670e689c7',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -537,6 +555,21 @@
             'install_path' => __DIR__ . '/../monolog/monolog',
             'aliases' => array(),
             'dev_requirement' => false,
+        ),
+        'mpociot/laravel-apidoc-generator' => array(
+            'dev_requirement' => true,
+            'replaced' => array(
+                0 => '*',
+            ),
+        ),
+        'mpociot/reflection-docblock' => array(
+            'pretty_version' => '1.0.1',
+            'version' => '1.0.1.0',
+            'reference' => 'c8b2e2b1f5cebbb06e2b5ccbf2958f2198867587',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../mpociot/reflection-docblock',
+            'aliases' => array(),
+            'dev_requirement' => true,
         ),
         'mtdowling/cron-expression' => array(
             'dev_requirement' => false,
@@ -986,6 +1019,33 @@
             'aliases' => array(),
             'dev_requirement' => true,
         ),
+        'shalvah/clara' => array(
+            'pretty_version' => '3.2.0',
+            'version' => '3.2.0.0',
+            'reference' => 'cdbb5737cbdd101756d97dd2279a979a1af7710b',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../shalvah/clara',
+            'aliases' => array(),
+            'dev_requirement' => true,
+        ),
+        'shalvah/upgrader' => array(
+            'pretty_version' => '0.6.0',
+            'version' => '0.6.0.0',
+            'reference' => 'd95ed17fe9f5e1ee7d47ad835595f1af080a867f',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../shalvah/upgrader',
+            'aliases' => array(),
+            'dev_requirement' => true,
+        ),
+        'spatie/data-transfer-object' => array(
+            'pretty_version' => '3.9.1',
+            'version' => '3.9.1.0',
+            'reference' => '1df0906c4e9e3aebd6c0506fd82c8b7d5548c1c8',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../spatie/data-transfer-object',
+            'aliases' => array(),
+            'dev_requirement' => true,
+        ),
         'spatie/once' => array(
             'dev_requirement' => false,
             'replaced' => array(
@@ -1264,6 +1324,15 @@
             'install_path' => __DIR__ . '/../symfony/var-dumper',
             'aliases' => array(),
             'dev_requirement' => false,
+        ),
+        'symfony/var-exporter' => array(
+            'pretty_version' => 'v7.2.4',
+            'version' => '7.2.4.0',
+            'reference' => '4ede73aa7a73d81506002d2caadbbdad1ef5b69a',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../symfony/var-exporter',
+            'aliases' => array(),
+            'dev_requirement' => true,
         ),
         'symfony/yaml' => array(
             'pretty_version' => 'v7.2.3',
