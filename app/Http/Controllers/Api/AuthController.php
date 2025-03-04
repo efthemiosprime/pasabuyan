@@ -11,48 +11,7 @@ use Illuminate\Validation\Rules\Password;
 
 class AuthController extends Controller
 {
-    /**
-     * Register a new user
-     *
-     * @OA\Post(
-     *     path="/register",
-     *     summary="Register a new user",
-     *     tags={"Authentication"},
-     *     @OA\RequestBody(
-     *         required=true,
-     *         @OA\JsonContent(
-     *             required={"name", "email", "password", "password_confirmation"},
-     *             @OA\Property(property="name", type="string", example="John Doe"),
-     *             @OA\Property(property="email", type="string", format="email", example="john@example.com"),
-     *             @OA\Property(property="password", type="string", format="password", example="Password123!"),
-     *             @OA\Property(property="password_confirmation", type="string", format="password", example="Password123!"),
-     *             @OA\Property(property="phone_number", type="string", example="1234567890"),
-     *             @OA\Property(property="about", type="string", example="I am a software developer")
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="User registered successfully",
-     *         @OA\JsonContent(
-     *             @OA\Property(property="success", type="boolean", example=true),
-     *             @OA\Property(property="message", type="string", example="User registered successfully"),
-     *             @OA\Property(property="data", type="object",
-     *                 @OA\Property(property="user", type="object"),
-     *                 @OA\Property(property="access_token", type="string", example="1|abcdef123456"),
-     *                 @OA\Property(property="token_type", type="string", example="Bearer")
-     *             )
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=422,
-     *         description="Validation error",
-     *         @OA\JsonContent(
-     *             @OA\Property(property="success", type="boolean", example=false),
-     *             @OA\Property(property="errors", type="object")
-     *         )
-     *     )
-     * )
-     */
+
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -91,73 +50,6 @@ class AuthController extends Controller
         ]);
     }
 
-    /**
-     * Login user and create token
-     * 
-     * @OA\Post(
-     *     path="/login",
-     *     summary="User login",
-     *     description="Login user and generate access token",
-     *     operationId="userLogin",
-     *     tags={"Authentication"},
-     *     @OA\RequestBody(
-     *         required=true,
-     *         description="User credentials",
-     *         @OA\JsonContent(
-     *             required={"email", "password"},
-     *             @OA\Property(property="email", type="string", format="email", example="user@example.com"),
-     *             @OA\Property(property="password", type="string", format="password", example="password123")
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Successful login",
-     *         @OA\JsonContent(
-     *             @OA\Property(property="success", type="boolean", example=true),
-     *             @OA\Property(
-     *                 property="data",
-     *                 type="object",
-     *                 @OA\Property(
-     *                     property="user",
-     *                     type="object",
-     *                     @OA\Property(property="id", type="integer", example=1),
-     *                     @OA\Property(property="name", type="string", example="John Doe"),
-     *                     @OA\Property(property="email", type="string", format="email", example="user@example.com"),
-     *                     @OA\Property(property="phone_number", type="string", nullable=true, example="123-456-7890"),
-     *                     @OA\Property(property="about", type="string", nullable=true, example="Bio information"),
-     *                     @OA\Property(property="created_at", type="string", format="date-time"),
-     *                     @OA\Property(property="updated_at", type="string", format="date-time")
-     *                 ),
-     *                 @OA\Property(property="token", type="string", example="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...")
-     *             )
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=401,
-     *         description="Invalid credentials",
-     *         @OA\JsonContent(
-     *             @OA\Property(property="success", type="boolean", example=false),
-     *             @OA\Property(property="message", type="string", example="Invalid login credentials")
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=422,
-     *         description="Validation error",
-     *         @OA\JsonContent(
-     *             @OA\Property(property="success", type="boolean", example=false),
-     *             @OA\Property(
-     *                 property="errors",
-     *                 type="object",
-     *                 @OA\Property(
-     *                     property="email",
-     *                     type="array",
-     *                     @OA\Items(type="string", example="The email field is required.")
-     *                 )
-     *             )
-     *         )
-     *     )
-     * )
-     */
     public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -191,33 +83,7 @@ class AuthController extends Controller
         ]);
     }
 
-    /**
-     * Logout user (revoke token)
-     * 
-     * @OA\Post(
-     *     path="/logout",
-     *     summary="User logout",
-     *     description="Logout user and invalidate token",
-     *     operationId="userLogout",
-     *     tags={"Authentication"},
-     *     security={{"bearerAuth":{}}},
-     *     @OA\Response(
-     *         response=200,
-     *         description="Successful logout",
-     *         @OA\JsonContent(
-     *             @OA\Property(property="success", type="boolean", example=true),
-     *             @OA\Property(property="message", type="string", example="User logged out successfully")
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=401,
-     *         description="Unauthenticated",
-     *         @OA\JsonContent(
-     *             @OA\Property(property="message", type="string", example="Unauthenticated")
-     *         )
-     *     )
-     * )
-     */
+
     public function logout(Request $request)
     {
         $request->user()->currentAccessToken()->delete();

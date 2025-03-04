@@ -482,7 +482,7 @@
                 ]
             }
         },
-        "/api/user/password": {
+        "/user/password": {
             "put": {
                 "tags": [
                     "User"
@@ -600,7 +600,7 @@
                 ]
             }
         },
-        "/api/users/{id}": {
+        "/users/{id}": {
             "get": {
                 "tags": [
                     "User"
