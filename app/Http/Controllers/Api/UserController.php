@@ -97,5 +97,32 @@ class UserController extends Controller
             ], 404);
         }
     }
+
+    public function edit(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'sometimes|required|string|max:255',
+            'phone_number' => 'nullable|string|max:20',
+            'about' => 'nullable|string',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        $user = $request->user();
+        $user->update($validator->validated());
+
+        return response()->json([
+            'success' => true,
+            'data' => [
+                'user' => $user
+            ],
+            'message' => 'User profile updated successfully'
+        ]);
+    }
     
 }

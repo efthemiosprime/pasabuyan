@@ -66,15 +66,22 @@
                     <a href="#authenticating-requests">Authenticating requests</a>
                 </li>
                             </ul>
+                    <ul id="tocify-header-authentication" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="authentication">
+                    <a href="#authentication">Authentication</a>
+                </li>
+                                    <ul id="tocify-subheader-authentication" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="authentication-POSTapi-register">
+                                <a href="#authentication-POSTapi-register">Register a new user.</a>
+                            </li>
+                                                                        </ul>
+                            </ul>
                     <ul id="tocify-header-endpoints" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="endpoints">
                     <a href="#endpoints">Endpoints</a>
                 </li>
                                     <ul id="tocify-subheader-endpoints" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="endpoints-POSTapi-register">
-                                <a href="#endpoints-POSTapi-register">POST api/register</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-login">
+                                                    <li class="tocify-item level-2" data-unique="endpoints-POSTapi-login">
                                 <a href="#endpoints-POSTapi-login">POST api/login</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-GETapi-user--id-">
@@ -110,11 +117,11 @@ You can switch the language used with the tabs at the top right (or from the nav
         <h1 id="authenticating-requests">Authenticating requests</h1>
 <p>This API is not authenticated.</p>
 
-        <h1 id="endpoints">Endpoints</h1>
+        <h1 id="authentication">Authentication</h1>
 
     
 
-                                <h2 id="endpoints-POSTapi-register">POST api/register</h2>
+                                <h2 id="authentication-POSTapi-register">Register a new user.</h2>
 
 <p>
 </p>
@@ -131,12 +138,12 @@ You can switch the language used with the tabs at the top right (or from the nav
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"name\": \"b\",
-    \"email\": \"zbailey@example.net\",
-    \"password\": \"architecto\",
-    \"password_confirmation\": \"ngzmiyvdljnikhwaykcmyuwpwl\",
-    \"phone_number\": \"vqwrsitcpscqldzs\",
-    \"about\": \"n\"
+    \"name\": \"Leonardo da Vinci\",
+    \"email\": \"leo@davinci.com\",
+    \"password\": \"Le0DaV!nc!\",
+    \"password_confirmation\": \"Le0DaV!nc!\",
+    \"phone_number\": \"+1234567890, 123-456-7890, +1-234-567-890\",
+    \"about\": \"Professional overthinker, amateur napper, and certified snack enthusiast..\"
 }"
 </code></pre></div>
 
@@ -152,12 +159,12 @@ const headers = {
 };
 
 let body = {
-    "name": "b",
-    "email": "zbailey@example.net",
-    "password": "architecto",
-    "password_confirmation": "ngzmiyvdljnikhwaykcmyuwpwl",
-    "phone_number": "vqwrsitcpscqldzs",
-    "about": "n"
+    "name": "Leonardo da Vinci",
+    "email": "leo@davinci.com",
+    "password": "Le0DaV!nc!",
+    "password_confirmation": "Le0DaV!nc!",
+    "phone_number": "+1234567890, 123-456-7890, +1-234-567-890",
+    "about": "Professional overthinker, amateur napper, and certified snack enthusiast.."
 };
 
 fetch(url, {
@@ -169,7 +176,35 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-register">
-</span>
+            <blockquote>
+            <p>Example response (201):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;User registered successfully&quot;,
+    &quot;user&quot;: {
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;Leonardo da Vinci&quot;,
+        &quot;email&quot;: &quot;leo@davinci.com&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;The given data was invalid.&quot;,
+    &quot;errors&quot;: {
+        &quot;email&quot;: [
+            &quot;The email has already been taken.&quot;
+        ]
+    }
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-register" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-register"></span>:
@@ -246,10 +281,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="POSTapi-register"
-               value="b"
+               value="Leonardo da Vinci"
                data-component="body">
     <br>
-<p>Must not be greater than 255 characters. Example: <code>b</code></p>
+<p>The name of the user. Example: <code>Leonardo da Vinci</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -257,10 +292,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="POSTapi-register"
-               value="zbailey@example.net"
+               value="leo@davinci.com"
                data-component="body">
     <br>
-<p>Must be a valid email address. Must not be greater than 255 characters. Example: <code>zbailey@example.net</code></p>
+<p>The email of the user. Example: <code>leo@davinci.com</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -268,10 +303,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="POSTapi-register"
-               value="architecto"
+               value="Le0DaV!nc!"
                data-component="body">
     <br>
-<p>Example: <code>architecto</code></p>
+<p>The password of the user. Must be at least 8 characters long. Example: <code>Le0DaV!nc!</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password_confirmation</code></b>&nbsp;&nbsp;
@@ -279,36 +314,40 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password_confirmation"                data-endpoint="POSTapi-register"
-               value="ngzmiyvdljnikhwaykcmyuwpwl"
+               value="Le0DaV!nc!"
                data-component="body">
     <br>
-<p>Must be at least 8 characters. Example: <code>ngzmiyvdljnikhwaykcmyuwpwl</code></p>
+<p>The password confirmation. Must match the <code>password</code> field. Example: <code>Le0DaV!nc!</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>phone_number</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
+<small>optional</small>&nbsp;
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="phone_number"                data-endpoint="POSTapi-register"
-               value="vqwrsitcpscqldzs"
+               value="+1234567890, 123-456-7890, +1-234-567-890"
                data-component="body">
     <br>
-<p>Must not be greater than 20 characters. Example: <code>vqwrsitcpscqldzs</code></p>
+<p>The phone number of the user. Must be 8 to 11 digits long. Example: <code>+1234567890, 123-456-7890, +1-234-567-890</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>about</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
+<small>optional</small>&nbsp;
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="about"                data-endpoint="POSTapi-register"
-               value="n"
+               value="Professional overthinker, amateur napper, and certified snack enthusiast.."
                data-component="body">
     <br>
-<p>Must not be greater than 1000 characters. Example: <code>n</code></p>
+<p>Info of the user. Tell us a little about yourself... Example: <code>Professional overthinker, amateur napper, and certified snack enthusiast..</code></p>
         </div>
         </form>
 
-                    <h2 id="endpoints-POSTapi-login">POST api/login</h2>
+                <h1 id="endpoints">Endpoints</h1>
+
+    
+
+                                <h2 id="endpoints-POSTapi-login">POST api/login</h2>
 
 <p>
 </p>

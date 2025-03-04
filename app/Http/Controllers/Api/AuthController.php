@@ -13,6 +13,33 @@ use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
 {
 
+    /**
+     * Register a new user.
+     *
+     * @group Authentication
+     *
+     * @bodyParam name string required The name of the user. Example: Leonardo da Vinci
+     * @bodyParam email string required The email of the user. Example: leo@davinci.com
+     * @bodyParam password string required The password of the user. Must be at least 8 characters long. Example: Le0DaV!nc!
+     * @bodyParam password_confirmation string required The password confirmation. Must match the `password` field. Example: Le0DaV!nc!
+     * @bodyParam phone_number optional The phone number of the user. Must be 8 to 11 digits long. Example: 123-456-7890
+     * @bodyParam about optional Info of the user. Tell us a little about yourself... Example: Professional overthinker, amateur napper, and certified snack enthusiast..
+     *
+     * @response 201 {
+     *   "message": "User registered successfully",
+     *   "user": {
+     *       "id": 1,
+     *       "name": "Leonardo da Vinci",
+     *       "email": "leo@davinci.com"
+     *   }
+     * }
+     * @response 422 {
+     *   "message": "The given data was invalid.",
+     *   "errors": {
+     *       "email": ["The email has already been taken."]
+     *   }
+     * }
+     */
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -20,7 +47,13 @@ class AuthController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => ['required', 'confirmed', Password::min(8)->mixedCase()->numbers()],
             'password_confirmation' => 'required|string|min:8', 
-            'phone_number' => 'nullable|string|max:20',
+            'phone_number' => [
+                'nullable',
+                'string', // Ensure the input is treated as a string
+                'regex:/^[0-9+\- ]+$/', // Allow digits, +, -, and spaces
+                'min:8', // Minimum length
+                'max:20', // Adjust max length to accommodate special characters
+            ],
             'about' => 'nullable|string|max:1000',
         ]);
 
@@ -93,100 +126,6 @@ class AuthController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'User logged out successfully'
-        ]);
-    }
-
-    /**
-     * Update user profile
-     * 
-     * @OA\Put(
-     *     path="/user/edit",
-     *     summary="Update user profile",
-     *     description="Update user profile information",
-     *     operationId="updateUserProfile",
-     *     tags={"User"},
-     *     security={{"bearerAuth":{}}},
-     *     @OA\RequestBody(
-     *         required=true,
-     *         description="User profile data",
-     *         @OA\JsonContent(
-     *             @OA\Property(property="name", type="string", example="John Doe"),
-     *             @OA\Property(property="phone_number", type="string", nullable=true, example="123-456-7890"),
-     *             @OA\Property(property="about", type="string", nullable=true, example="Bio information")
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="Profile updated successfully",
-     *         @OA\JsonContent(
-     *             @OA\Property(property="success", type="boolean", example=true),
-     *             @OA\Property(
-     *                 property="data",
-     *                 type="object",
-     *                 @OA\Property(
-     *                     property="user",
-     *                     type="object",
-     *                     @OA\Property(property="id", type="integer", example=1),
-     *                     @OA\Property(property="name", type="string", example="John Doe"),
-     *                     @OA\Property(property="email", type="string", format="email", example="user@example.com"),
-     *                     @OA\Property(property="phone_number", type="string", nullable=true, example="123-456-7890"),
-     *                     @OA\Property(property="about", type="string", nullable=true, example="Bio information"),
-     *                     @OA\Property(property="created_at", type="string", format="date-time"),
-     *                     @OA\Property(property="updated_at", type="string", format="date-time")
-     *                 )
-     *             ),
-     *             @OA\Property(property="message", type="string", example="User profile updated successfully")
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=401,
-     *         description="Unauthenticated",
-     *         @OA\JsonContent(
-     *             @OA\Property(property="message", type="string", example="Unauthenticated")
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=422,
-     *         description="Validation error",
-     *         @OA\JsonContent(
-     *             @OA\Property(property="success", type="boolean", example=false),
-     *             @OA\Property(
-     *                 property="errors",
-     *                 type="object",
-     *                 @OA\Property(
-     *                     property="name",
-     *                     type="array",
-     *                     @OA\Items(type="string", example="The name field is required.")
-     *                 )
-     *             )
-     *         )
-     *     )
-     * )
-     */
-    public function edit(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'name' => 'sometimes|required|string|max:255',
-            'phone_number' => 'nullable|string|max:20',
-            'about' => 'nullable|string',
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json([
-                'success' => false,
-                'errors' => $validator->errors()
-            ], 422);
-        }
-
-        $user = $request->user();
-        $user->update($validator->validated());
-
-        return response()->json([
-            'success' => true,
-            'data' => [
-                'user' => $user
-            ],
-            'message' => 'User profile updated successfully'
         ]);
     }
 
