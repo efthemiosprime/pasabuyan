@@ -29,3 +29,8 @@ Homestead.json
 .phpactor.json
 auth.json
 temp
+
+
+# Scribe API documentation
+.scribe/endpoints.cache/
+.scribe/endpoints/
