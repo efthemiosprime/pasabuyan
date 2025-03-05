@@ -14,4 +14,10 @@ Pasabuyan is a courier app that connects individuals needing item deliveries wit
 - **Database**: PostgreSQL
 - **Key Features**: User profiles, trip management, package tracking, secure messaging, reviews/ratings, and a notification system.
 
+## Database Schema
+Below is the database schema for Pasabuyan:
+
+![Database Schema](/docs/database_schema.png)
+
+## How It Works
 This platform creates a sharing economy for package delivery, utilizing unused capacity in personal travel to create an efficient, community-based logistics network.
