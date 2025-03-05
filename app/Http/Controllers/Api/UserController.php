@@ -10,10 +10,44 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
-
+/**
+ * @group User Management
+ *
+ * APIs for managing users
+ */
 class UserController extends Controller
 {
-
+    /**
+     * Update User Password
+     *
+     * Update the authenticated user's password.
+     *
+     * @authenticated
+     *
+     * @bodyParam current_password string required The current password of the user. Example: OldPassword123!
+     * @bodyParam password string required The new password for the user. Example: NewPassword123!
+     * @bodyParam password_confirmation string required The confirmation of the new password. Example: NewPassword123!
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "message": "Password updated successfully"
+     * }
+     * @response 401 {
+     *   "success": false,
+     *   "message": "Current password is incorrect"
+     * }
+     * @response 422 {
+     *   "success": false,
+     *   "errors": {
+     *     "current_password": [
+     *       "The current password field is required."
+     *     ],
+     *     "password": [
+     *       "The password must be at least 8 characters."
+     *     ]
+     *   }
+     * }
+     */
     public function updatePassword(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -48,6 +82,33 @@ class UserController extends Controller
         ]);
     }
 
+        /**
+     * Get User Details
+     *
+     * Retrieve details of a specific user by their ID.
+     *
+     * @urlParam id integer required The ID of the user. Example: 1
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "data": {
+     *     "user": {
+     *       "id": 1,
+     *       "name": "John Doe",
+     *       "email": "john.doe@example.com",
+     *       "phone_number": "+1234567890",
+     *       "about": "I am a software developer.",
+     *       "profile_picture": "https://example.com/profile.jpg",
+     *       "id_verified": true,
+     *       "rating": 4.5
+     *     }
+     *   }
+     * }
+     * @response 404 {
+     *   "success": false,
+     *   "message": "User not found"
+     * }
+     */
     public function show($id)
     {
         $user = User::findOrFail($id);
@@ -75,11 +136,30 @@ class UserController extends Controller
     }
 
 
-        /**
-     * Get a specific user by ID
+    /**
+     * Get a Specific User by ID
      *
-     * @param int $id
-     * @return \Illuminate\Http\JsonResponse
+     * Retrieve details of a specific user by their ID.
+     *
+     * @urlParam id integer required The ID of the user. Example: 1
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "data": {
+     *     "id": 1,
+     *     "name": "John Doe",
+     *     "email": "john.doe@example.com",
+     *     "phone_number": "+1234567890",
+     *     "about": "I am a software developer.",
+     *     "profile_picture": "https://example.com/profile.jpg",
+     *     "id_verified": true,
+     *     "rating": 4.5
+     *   }
+     * }
+     * @response 404 {
+     *   "success": false,
+     *   "message": "User not found"
+     * }
      */
     public function getUser($id)
     {
@@ -98,6 +178,42 @@ class UserController extends Controller
         }
     }
 
+        /**
+     * Edit User Profile
+     *
+     * Update the authenticated user's profile information.
+     *
+     * @authenticated
+     *
+     * @bodyParam name string optional The name of the user. Example: John Doe
+     * @bodyParam phone_number string optional The phone number of the user. Example: +1234567890
+     * @bodyParam about string optional A short description about the user. Example: I am a software developer.
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "data": {
+     *     "user": {
+     *       "id": 1,
+     *       "name": "John Doe",
+     *       "email": "john.doe@example.com",
+     *       "phone_number": "+1234567890",
+     *       "about": "I am a software developer.",
+     *       "profile_picture": "https://example.com/profile.jpg",
+     *       "id_verified": true,
+     *       "rating": 4.5
+     *     }
+     *   },
+     *   "message": "User profile updated successfully"
+     * }
+     * @response 422 {
+     *   "success": false,
+     *   "errors": {
+     *     "name": [
+     *       "The name field is required."
+     *     ]
+     *   }
+     * }
+     */
     public function edit(Request $request)
     {
         $validator = Validator::make($request->all(), [

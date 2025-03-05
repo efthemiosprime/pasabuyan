@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * @group Authentication
+ *
+ * APIs for user authentication and registration
+ */
 class AuthController extends Controller
 {
 
@@ -85,6 +90,41 @@ class AuthController extends Controller
         ]);
     }
 
+        /**
+     * Login User
+     *
+     * Authenticate a user and return an access token.
+     *
+     * @bodyParam email string required The email address of the user. Example: john.doe@example.com
+     * @bodyParam password string required The password for the user. Example: Password123!
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "data": {
+     *     "user": {
+     *       "id": 1,
+     *       "name": "John Doe",
+     *       "email": "john.doe@example.com"
+     *     },
+     *     "token": "1|abcdef1234567890"
+     *   }
+     * }
+     * @response 401 {
+     *   "success": false,
+     *   "message": "Invalid login credentials"
+     * }
+     * @response 422 {
+     *   "success": false,
+     *   "errors": {
+     *     "email": [
+     *       "The email field is required."
+     *     ],
+     *     "password": [
+     *       "The password field is required."
+     *     ]
+     *   }
+     * }
+     */
     public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -119,6 +159,18 @@ class AuthController extends Controller
     }
 
 
+        /**
+     * Logout User
+     *
+     * Revoke the current user's access token.
+     *
+     * @authenticated
+     *
+     * @response 200 {
+     *   "success": true,
+     *   "message": "User logged out successfully"
+     * }
+     */
     public function logout(Request $request)
     {
         $request->user()->currentAccessToken()->delete();
