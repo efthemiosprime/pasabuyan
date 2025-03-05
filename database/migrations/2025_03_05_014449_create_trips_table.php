@@ -24,9 +24,11 @@ return new class extends Migration
             $table->decimal('max_weight_kg', 6, 2)->nullable();
             $table->decimal('max_volume_l', 6, 2)->nullable();
             $table->text('notes')->nullable();
-            $table->enum('status', ['planned', 'in_progress', 'completed', 'canceled'])->default('planned');
-            $table->point('origin_coordinates')->nullable();
-            $table->point('destination_coordinates')->nullable();
+            $table->enum('status', ['pending', 'in_progress', 'completed', 'canceled'])->default('pending');
+            // needs to remove geographic point for now since it involves several steps, 
+            // including setting up the database schema, creating a custom cast for the point type, 
+            // and handling the data in your application.
+            // $table->point('destination_coordinates')->nullable();
             $table->timestamps();
         });
     }

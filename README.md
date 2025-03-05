@@ -15,7 +15,7 @@ Pasabuyan is a courier app that connects individuals needing item deliveries wit
 - **Key Features**: User profiles, trip management, package tracking, secure messaging, reviews/ratings, and a notification system.
 
 ## Database Schema
-Below is the database schema for Pasabuyan:
+Below is the database schema:
 
 ![Database Schema](/docs/database_schema.png)
 

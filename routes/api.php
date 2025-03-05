@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\UserController;
-use L5Swagger\Http\Controllers\SwaggerController;
+use App\Http\Controllers\Api\TripController;
+// use L5Swagger\Http\Controllers\SwaggerController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,6 +20,7 @@ use L5Swagger\Http\Controllers\SwaggerController;
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/user/{id}', [UserController::class, 'getUser']);
+Route::apiResource('trips', TripController::class);
 // Route::get('/users/{id}', [UserController::class], 'show');
 // Protected routes
 // Route::middleware('auth:sanctum')->group(function () {
